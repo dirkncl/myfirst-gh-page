@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="ext/id3v2.js"></script>
+  </head>
+  <body>
+    <!--<marquee style="font-size:24px;color:white">Foto: Juara I Lomba Foto "Memahami Awan", BMKG 2017</marquee>-->
+    <br>
+    <marquee style="font-size:24px;color:white"><button><a style="text-decoration:none;" href="https://dirkncl.github.io/LyricsPlay/mp3LyricPlayer.html"> MP3 Lyric Player</a></button></marquee>
+    <div style="position:absolute;z-index:1000"><pre id="lyrics" style="float:left;font-size:16px;color:yellow"></pre></div>
+    <center>
+      <div style="position:absolute;top:50%;left:50%;z-index=-999"> 
+        <canvas id="flag" width="320" height="248" style="margin-left: -160px;margin-top: -124px;"></canvas>
+      </div> 
+    </center>
+    <script>
+      function getLyrics(ElementId,mp3file){
+        ID3v2.parseURL(mp3file,render_song);
+        function render_song(tags){
+          document.getElementById(ElementId).innerText = tags['Unsychronized lyric/text transcription']?tags['Unsychronized lyric/text transcription'].substr(3):'';
+        };
+      };
+      var laguMp3="media/lagu kebangsaan indonesia raya instrumental.mp3";
+      var plays=document.createElement("audio");
+      plays.setAttribute("src",laguMp3);
+      //plays.play();
+      document.title="Test halaman di github.com";
+      getLyrics('lyrics',laguMp3);
+      
+    </script>
+    <script>
+      var bdr='';
+      var bendera;
+      window.onload = function(){
+        
+        document.body.style="background-color:black;background-image: url('media/juara1Lombafotoawanbmkg2017.jpg');background-repeat:no-repeat;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center;";
+        document.body.addEventListener('click',function(){plays.play()},false);
+        document.body.addEventListener('dblclick',function(){plays.pause()},false);
+        document.body.title="Click to All Area to Play Indonesia Raya, double click to stop";
+        bendera = document.getElementById('flag');	
+        GambarBendera( bendera, 320, 0, 40 );	
+        bendera.style.marginLeft = -(bendera.width/2)+'px';
+        bendera.style.marginTop  = -(bendera.height/2)+'px';
+        var timer = waveFlag( bendera, 20, 10, 150, 200, -0.1 );
+      };
+      function GambarBendera( canvas, width, padX, padY ){
+        if (!padX) padX = 0;
+        if (!padY) padY = 0;	
+        var a = width / 1.9;	
+        var b = width;	
+        var c = 7*a/13;	
+        var d = 0.76*a;	
+        var e = 0.054*a;	
+        var g = 0.063*a;	
+        var k = 0.0616*a;	
+        var l = a / 13;	
+        canvas.width  = b+2*padX;	
+        canvas.height = a+2*padY;	
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'red';	  
+        ctx.fillRect(5,25,300,100);
+        ctx.fillStyle = 'white';	  
+        ctx.fillRect(5,125,300,100);
+      }
+      function waveFlag( canvas, wavelength, amplitude, period, shading, squeeze ){	
+        if (!squeeze) squeeze = 0;
+        if (!shading) shading = 100;
+        if (!period) period = 200;
+        if (!amplitude) amplitude = 10;
+        if (!wavelength) wavelength = canvas.width/10;
+        var fps = 30;
+        var ctx = canvas.getContext('2d');
+        var w = canvas.width, 
+            h = canvas.height;
+        var od = ctx.getImageData(0,0,w,h).data;
+        var ct = 0, 
+            st=new Date;
+        return setInterval(function(){
+          var id = ctx.getImageData(0,0,w,h);
+          var  d = id.data;
+          var now = (new Date)/period;
+          for (var y=0;y<h;++y){
+            var lastO=0,shade=0;
+            var sq = (y-h/2)*squeeze;
+            for (var x=0;x<w;++x){
+              var px = (y*w + x)*4;
+              var pct = x/w;
+              var o = Math.sin(x/wavelength-now)*amplitude*pct;
+              var y2 = y + (o+sq*pct)<<0;
+              var opx = (y2*w + x)*4;
+              shade = (o-lastO)*shading;
+              d[px] = od[opx  ]+shade;
+              d[px+1] = od[opx+1]+shade;
+              d[px+2] = od[opx+2]+shade;
+              d[px+3] = od[opx+3];
+              lastO = o;	
+            }		
+          }		
+          ctx.putImageData(id,0,0);
+          if ((++ct)%100 == 0) console.log(1000 * ct / (new Date - st));
+          ///////////////////////////////////////////////////////
+          var link = document.createElement('link');
+          link.type = 'image/x-icon';
+          link.rel = 'shortcut icon';
+          bdr=bendera;
+          link.href = bdr.toDataURL('image/x-icon');
+          //document.head.appendChild(link);
+          document.getElementsByTagName('head')[0].appendChild(link);
+          document.getElementsByTagName('head')[0].removeChild(link);
+          /////////////////////////////////////////////////////////
+          
+        },1000/fps);
+      }
+    </script>
+  </body>
+</html>
