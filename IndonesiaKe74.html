@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="ext/id3v2.js"></script>
+  </head>
+  <body>
+    <!--<marquee style="font-size:24px;color:white">Foto: Juara I Lomba Foto "Memahami Awan", BMKG 2017</marquee>-->
+    <br>
+    <marquee style="font-size:24px;color:red"><button><a style="text-decoration:none;border:none" href="https://dirkncl.github.io/LyricsPlay/mp3LyricPlayer.html"> MP3 Lyric Player</a></button></marquee>
+    <center><div style="width:12%"><img src="https://upload.wikimedia.org/wikipedia/commons/9/90/National_emblem_of_Indonesia_Garuda_Pancasila.svg"></div><center>
+    <div id="lh" style="position:fixed;top:0;z-index:1000;overflow-y:scroll;height:100%"><pre id="lyrics" style="float:left;font-size:16px;color:red;background-color:white;opacity:0.8"></pre></div>
+    <center>
+      <div style="position:fixed;top:50%;left:50%;z-index=-999"> 
+      
+        <canvas id="flag" width="320" height="248" style="margin-left: -160px;margin-top: -124px;"></canvas>
+      </div> 
+    </center>
+    <center>
+    <div style="margin-top:20%">  
+      <span style="font-size:40px;color:rgb(255, 0, 0)" onmouseover="this.style.fontSize='60px'"  onmouseout="this.style.fontSize='40px'">Dirgahayu Republik Indonesia ke-74</span><br>
+      <span style="font-size:30px;color:#ffa500">Menuju Indonesia yang memiliki SDM Unggul</span>
+    </div>  
+    </center>
+    <script>document.head.appendChild(document.createElement("style")).textContent="#lh::-webkit-scrollbar {width: 5px;height: 0px;}#lh::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 10px;}#lh::-webkit-scrollbar-thumb {border-radius: 3px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}";function getLyrics(a,b){ID3v2.parseURL(b,function(b){document.getElementById(a).innerText=b["Unsychronized lyric/text transcription"]?b["Unsychronized lyric/text transcription"].substr(3):""})}var laguMp3="media/lagu kebangsaan indonesia raya instrumental.mp3",plays=document.createElement("audio");plays.setAttribute("src","media/lagu kebangsaan indonesia raya instrumental.mp3"),document.title="Dirgahayu Indonesia ke 74 Tahun",getLyrics("lyrics","media/lagu kebangsaan indonesia raya instrumental.mp3");</script><script>var bendera,bdr="";window.onload=function(){document.body.style="background-color:black;background-image: url('https://www.tripsavvy.com/thmb/LUn650t-Z5WgHgC7JSHsoLNpOXI=/950x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-541628454-5a338f6e482c52003648501c.jpg');background-repeat:no-repeat;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center;",document.body.addEventListener("click",function(){plays.play()},!1),document.body.addEventListener("dblclick",function(){plays.pause()},!1),document.body.title="Click to All Area to Play Indonesia Raya, double click to stop",bendera=document.getElementById("flag"),GambarBendera(bendera,320,0,40),bendera.style.marginLeft=-(bendera.width/2)+"px",bendera.style.marginTop=-(bendera.height/2)+"px";waveFlag(bendera,20,10,150,200,-.1)};function GambarBendera(b,c,d,e){d||(d=0),e||(e=0);var f=c/1.9;b.width=c+2*d,b.height=f+2*e;var a=b.getContext("2d");a.fillStyle="red",a.fillRect(5,25,300,100),a.fillStyle="white",a.fillRect(5,125,300,100)}function waveFlag(a,b,c,e,f,g){g||(g=0),f||(f=100),e||(e=200),c||(c=10),b||(b=a.width/10);var i=a.getContext("2d"),j=a.width,k=a.height,h=i.getImageData(0,0,j,k).data,l=0,m=new Date;return setInterval(function(){for(var a=i.getImageData(0,0,j,k),n=a.data,d=new Date/e,p=0;p<k;++p)for(var q=0,r=0,s=(p-k/2)*g,t=0;t<j;++t){var u=4*(p*j+t),v=t/j,w=Math.sin(t/b-d)*c*v,o=p+(w+s*v)<<0,z=4*(o*j+t);r=(w-q)*f,n[u]=h[z]+r,n[u+1]=h[z+1]+r,n[u+2]=h[z+2]+r,n[u+3]=h[z+3],q=w}i.putImageData(a,0,0),0==++l%100&&console.log(1e3*l/(new Date-m));var A=document.createElement("link");A.type="image/x-icon",A.rel="shortcut icon",bdr=bendera,A.href=bdr.toDataURL("image/x-icon"),document.getElementsByTagName("head")[0].appendChild(A),document.getElementsByTagName("head")[0].removeChild(A)},1e3/30)}</script>
+  </body>
+</html>
